@@ -8,7 +8,7 @@ clc
 close all
 
 %% step1 initializatio
-F_Cnt = 20;  %帧数
+F_Cnt = 4;  %帧数
 state_cnt = 4;  %状态的个数
 %% simulation condition
 T_step=1;    % 时间间隔
@@ -19,10 +19,12 @@ x = GenerateStateMetrix(T_step,q_CV, F_Cnt, initx);
 %% 产生量测（像素点平面数据）
 Power_noise_av = 1;
 Theta = 1;
-SNR=20;    % 什么用处？
+SNR=10;    % 什么用处？
 Nx = 50;   %径向距离分辨单元    
 Ny = 50;   %切向距离分辨单元
 DataScan = DP_GenerateData(x, SNR, Nx, Ny, F_Cnt, Theta , Power_noise_av);
+
+DPTBD_ShowComplexData(DataScan);
 
 %% 数据处理
 DataScan_Processed = DP_MainAlgorithm(DataScan);
