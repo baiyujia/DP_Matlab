@@ -10,7 +10,7 @@ LastFrameValue = cellfun(@(x) x.value, DataScan(:,:,F_Cnt), 'UniformOutput', fal
 
 %选择最后一帧数据中大于VT的点的坐标
 maxvalue = max(max(abs(cell2mat(LastFrameValue))));
-kk=find( abs(cell2mat(LastFrameValue)) >  maxvalue * 0.90 );
+kk=find( abs(cell2mat(LastFrameValue)) ==  maxvalue);
 
 %遍历所有的可能的轨迹点
 cnt = 1;

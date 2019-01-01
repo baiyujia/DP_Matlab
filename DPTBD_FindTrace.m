@@ -1,9 +1,13 @@
 function [RealTrace] = DPTBD_FindTrace(TargetTrace,DataScan_Processed)
-    rate = 0.7
+    rate = 0.7;
     %获取维度
     s = size(TargetTrace);
     x = s(1);
     y = s(2);
+    if ndims(TargetTrace) == 2
+        RealTrace = TargetTrace;
+        return;
+    end
     Trace_Cnt = s(3);
     RealTrace = [];
     %截取最后一帧数据

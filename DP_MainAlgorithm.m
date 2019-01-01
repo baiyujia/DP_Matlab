@@ -9,17 +9,23 @@ F_Cnt = s(3);
 DataScan_Out = cell(x, y, F_Cnt);
 
 %信号的迭代处理
-for i = 2 : F_Cnt
+for i = 1 : F_Cnt
     for j = 1 : x
         for k = 1 : y
-            %第二桢数据按照之前的方法进行
-            if i==2
+            %第一帧数据，只是把原来的值拷贝过来，没有需要计算的内容
+            if i == 1
+                Point.lastPoint = [-1, -1];
+                Point.value = DataScanTmp(j,k,i);
+                DataScan_Out{j,k,i} = Point;
+            %第二帧数据简单求最大值
+            elseif i == 2
                 [MaxValue, lastxPos ,lastyPos] = DP_FindMaxSignalInRange(DataScanTmp(:, :, i - 1),j, k, 16);
                 DataScanTmp(j,k,i) = DataScanTmp(j,k,i) + MaxValue;
 
                 Point.lastPoint = [lastxPos, lastyPos];
                 Point.value = DataScanTmp(j,k,i);
                 DataScan_Out{j,k,i} = Point;
+            %第三帧开始，使用cos定理加权计算最大值
             else
                 %获得当前位置在上一帧中的最大值的位置：
                 [MaxValue, lastxPos ,lastyPos] = DP_FindMaxSignalInRange(DataScanTmp(:, :, i - 1),j, k, 16);
