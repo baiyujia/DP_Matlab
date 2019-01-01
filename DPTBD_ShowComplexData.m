@@ -1,7 +1,7 @@
 function  DPTBD_ShowComplexData(DataScan)
     n=ndims(DataScan);
     s=size(DataScan);
-    figure(22)
+    figure(randi(100))
     if n == 2
         surf(abs(DataScan));
     else

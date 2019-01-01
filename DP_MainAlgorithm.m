@@ -1,4 +1,4 @@
-function [ DataScan_Out ] = DP_MainAlgorithm(DataScan)
+function [ DataScan_Out ] = DP_MainAlgorithm(DataScan,newAlg)
 DataScanTmp = DataScan;
 %ªÒ»°Œ¨∂»
 s = size(DataScan);
@@ -32,8 +32,11 @@ for i = 1 : F_Cnt
                
                 lastlastxPos = DataScan_Out{lastxPos,lastyPos,i-1}.lastPoint(1);
                 lastlastyPos = DataScan_Out{lastxPos,lastyPos,i-1}.lastPoint(2);
-                
-                weight = DP_GetCosWeight(j,k,lastxPos,lastyPos,lastlastxPos,lastlastyPos);
+                if newAlg == 1
+                    weight = DP_GetCosWeight(j,k,lastxPos,lastyPos,lastlastxPos,lastlastyPos);
+                else
+                    weight = 1;
+                end
                 DataScanTmp(j,k,i) = DataScanTmp(j,k,i) + MaxValue * weight;
 
                 Point.lastPoint = [lastxPos, lastyPos];

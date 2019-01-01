@@ -11,7 +11,7 @@ function [DataOutput] = DP_GenerateData(Target, snr, ScaleX, ScaleY, F_Cnt, Thet
        IndexY=ceil(Target(3,t));   % 
 
        Buf  =  Power_target_av*exp(1i*rand(1)*2*pi);  %Yiwei' definition   目标的量测数据  易伟博士论文19页Ak为幅度恒定且相位在0~2π内服从均匀分布的复随机变量
-       Data_target(IndexX,IndexY,t) = Buf;
+       Data_target(IndexX,IndexY,t) = abs(Buf);
     end  
     
     DataOutput = BGNosie+Data_target;    % 目标幅度与背景噪声组成量测的幅相信息，量测的位置位于分辨单元的中心位置

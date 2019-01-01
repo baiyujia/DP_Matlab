@@ -8,7 +8,7 @@ clc
 close all
 
 %% step1 initializatio
-F_Cnt = 4;  %帧数
+F_Cnt = 16;  %帧数
 state_cnt = 4;  %状态的个数
 %% simulation condition
 T_step=1;    % 时间间隔
@@ -27,8 +27,9 @@ DataScan = DP_GenerateData(x, SNR, Nx, Ny, F_Cnt, Theta , Power_noise_av);
 DPTBD_ShowComplexData(DataScan);
 
 %% 数据处理
-DataScan_Processed = DP_MainAlgorithm(DataScan);
-
+DataScan_Processed = DP_MainAlgorithm(DataScan,1);
+TargetTraceShow = DP_TransCell2Mat(DataScan_Processed);
+DPTBD_ShowComplexData(TargetTraceShow);
 %% 获取轨迹
 VT = 150; %门限
 TargetTrace = DP_FindTargetTrack(DataScan_Processed,VT);

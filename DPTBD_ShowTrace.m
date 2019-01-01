@@ -10,7 +10,7 @@ function  DPTBD_ShowTrace(RealTrace)
 
     coArray=['r','g','c','b','y'];%初始颜色数组
     liArray=['o','x','+','*','^'];%初始线条数组
-    figure(33)
+    figure(randi(100))
     for i =1:loop
         liVal=liArray(1 + rem(i,length(coArray)));%取得随机线条
         coVal=coArray(1 + rem(i,length(coArray)));%取得随机颜色
